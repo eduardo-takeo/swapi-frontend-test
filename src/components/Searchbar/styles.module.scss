@@ -1,0 +1,35 @@
+.searchbarContainer {
+  padding: 1rem 0;
+}
+
+.searchbar {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: transparent;
+  color: var(--white);
+  border: none;
+  border-bottom: 2px solid var(--gray-300);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.categoriesContainer {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  padding: 0 0.5rem;
+  background-color: var(--gray-400);
+
+  li {
+    div {
+      cursor: pointer;
+      padding: 0.8rem 1.5rem;
+      border-radius: 10rem;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: var(--gray-300);
+      }
+    }
+  }
+}
