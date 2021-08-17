@@ -1,0 +1,41 @@
+.dropdownContainer {
+  margin-bottom: 1rem;
+}
+
+.filmContainer {
+  background-color: var(--gray-500);
+  padding: 2rem 1rem;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-400);
+  padding: 1rem;
+  border-radius: 0 0 5px 5px;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  span {
+    margin-bottom: 0.5rem;
+  }
+}
