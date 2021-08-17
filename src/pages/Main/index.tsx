@@ -13,6 +13,7 @@ import styles from "./styles.module.scss";
 function Main() {
   const { films, isLoading, hasError } = useFilms();
   const [displayingFilms, setDisplayingFilms] = useState<IFilm[]>([]);
+  const [filterOption, setFilterOption] = useState<string>("films");
 
   useEffect(() => {
     setDisplayingFilms(films);
@@ -31,7 +32,11 @@ function Main() {
       <Header />
 
       <main className={styles.mainContainer}>
-        <Searchbar filterFilms={filterFilms} />
+        <Searchbar
+          filterFilms={filterFilms}
+          filterOption={filterOption}
+          setFilterOption={setFilterOption}
+        />
 
         {displayingFilms.length > 0 && (
           <FilmsShowcase filmsList={displayingFilms} />

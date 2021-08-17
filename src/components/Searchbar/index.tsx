@@ -4,9 +4,15 @@ import styles from "./styles.module.scss";
 
 interface SearchbarProps {
   filterFilms: (searchTerm: string) => void;
+  filterOption: string;
+  setFilterOption: (option: string) => void;
 }
 
-function Searchbar({ filterFilms }: SearchbarProps) {
+function Searchbar({
+  filterFilms,
+  filterOption,
+  setFilterOption,
+}: SearchbarProps) {
   return (
     <section className={styles.searchbarContainer}>
       <input
@@ -16,11 +22,17 @@ function Searchbar({ filterFilms }: SearchbarProps) {
         onChange={(e) => filterFilms(e.target.value)}
       />
       <ul className={styles.categoriesContainer}>
-        <li>
-          <div>Films</div>
+        <li
+          className={filterOption === "films" ? styles.active : ""}
+          onClick={() => setFilterOption("films")}
+        >
+          Films
         </li>
-        <li>
-          <div>Characters</div>
+        <li
+          className={filterOption === "characters" ? styles.active : ""}
+          onClick={() => setFilterOption("characters")}
+        >
+          Characters
         </li>
       </ul>
     </section>
