@@ -50,11 +50,8 @@ function Main() {
       <main className={styles.mainContainer}>
         <Searchbar filterFilms={filterFilms} />
 
-        {films.length > 0 ? (
-          <FilmsShowcase filmsList={films} />
-        ) : (
-          <EmptyPrompt />
-        )}
+        {films.length > 0 && <FilmsShowcase filmsList={films} />}
+        {films.length < 1 && !isLoading && <EmptyPrompt />}
 
         {isLoading && <LoadingMessage />}
         {error && <ErrorMessage />}
