@@ -10,7 +10,7 @@ function FilmsShowcase({ filmsList }: FilmsShowcaseProps) {
   return (
     <section>
       {filmsList?.map((film) => (
-        <FilmDropdown film={film} />
+        <FilmDropdown key={film.episode_id} film={film} />
       ))}
     </section>
   );
