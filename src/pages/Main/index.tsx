@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ErrorMessage from "../../components/ErrorMessage";
 import FilmsShowcase from "../../components/FilmsShowcase";
 import Header from "../../components/Header";
 import Searchbar from "../../components/Searchbar";
@@ -6,17 +7,28 @@ import { IFilm } from "../../interfaces/Film";
 
 import styles from "./styles.module.scss";
 
-//! Remove mock when API call is implemented
-// import mockedFilms from "../../mocks/films.json";
-
 function Main() {
   const [films, setFilms] = useState<IFilm[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch("https://swapi.dev/api/films/")
-      .then((response) => response.json())
-      .then((data) => setFilms(data.results))
-      .catch((err) => console.error(err));
+    async function fetchFilms() {
+      setIsLoading(true);
+
+      try {
+        const response = await fetch("https://swapi.dev/api/films/");
+        const data = await response.json();
+        setIsLoading(false);
+        setFilms(data.results);
+      } catch (error) {
+        setIsLoading(false);
+        setError(true);
+        console.error(error);
+      }
+    }
+
+    fetchFilms();
   }, []);
 
   return (
@@ -27,6 +39,9 @@ function Main() {
         <Searchbar />
 
         <FilmsShowcase filmsList={films} />
+
+        {isLoading && <h1>Loading....</h1>}
+        {error && <ErrorMessage />}
       </main>
     </div>
   );
