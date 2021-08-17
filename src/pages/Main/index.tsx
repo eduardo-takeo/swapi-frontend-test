@@ -9,6 +9,7 @@ import { IFilm } from "../../interfaces/Film";
 import styles from "./styles.module.scss";
 
 function Main() {
+  const [allFilmsList, setAllFilmsList] = useState<IFilm[]>([]);
   const [films, setFilms] = useState<IFilm[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -20,6 +21,7 @@ function Main() {
       try {
         const response = await fetch("https://swapi.dev/api/films/");
         const data = await response.json();
+        setAllFilmsList(data.results);
         setFilms(data.results);
       } catch (error) {
         setError(true);
@@ -32,12 +34,20 @@ function Main() {
     fetchFilms();
   }, []);
 
+  function filterFilms(searchTerm: string) {
+    const filteredFilms = allFilmsList.filter((film) =>
+      film.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setFilms(filteredFilms);
+  }
+
   return (
     <div>
       <Header />
 
       <main className={styles.mainContainer}>
-        <Searchbar />
+        <Searchbar filterFilms={filterFilms} />
 
         <FilmsShowcase filmsList={films} />
 
