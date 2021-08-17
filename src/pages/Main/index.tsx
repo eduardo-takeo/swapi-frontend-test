@@ -20,13 +20,13 @@ function Main() {
       try {
         const response = await fetch("https://swapi.dev/api/films/");
         const data = await response.json();
-        setIsLoading(false);
         setFilms(data.results);
       } catch (error) {
-        setIsLoading(false);
         setError(true);
         console.error(error);
       }
+
+      setIsLoading(false);
     }
 
     fetchFilms();
