@@ -18,7 +18,9 @@ function FilmDropdown({ film }: FilmDropdownProps) {
         onClick={() => setIsDetailsVisible(!isDetailsVisible)}
       >
         <h1>{film.title}</h1>
-        <p>{film.opening_crawl}</p>
+        <h3>
+          Episode {film.episode_id} - {film.release_date.substring(0, 4)}
+        </h3>
       </div>
       {isDetailsVisible && (
         <div className={styles.detailsContainer}>
