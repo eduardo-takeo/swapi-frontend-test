@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage";
 import FilmsShowcase from "../../components/FilmsShowcase";
 import Header from "../../components/Header";
+import LoadingMessage from "../../components/LoadingMessage";
 import Searchbar from "../../components/Searchbar";
 import { IFilm } from "../../interfaces/Film";
 
@@ -40,7 +41,7 @@ function Main() {
 
         <FilmsShowcase filmsList={films} />
 
-        {isLoading && <h1>Loading....</h1>}
+        {isLoading && <LoadingMessage />}
         {error && <ErrorMessage />}
       </main>
     </div>
