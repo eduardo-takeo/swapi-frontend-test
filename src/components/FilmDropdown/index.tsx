@@ -12,11 +12,11 @@ function FilmDropdown({ film }: FilmDropdownProps) {
   const [isDetailsVisible, setIsDetailsVisible] = useState<boolean>(false);
 
   return (
-    <div
-      className={styles.dropdownContainer}
-      onClick={() => setIsDetailsVisible(!isDetailsVisible)}
-    >
-      <div className={styles.filmContainer}>
+    <div className={styles.dropdownContainer}>
+      <div
+        className={styles.filmContainer}
+        onClick={() => setIsDetailsVisible(!isDetailsVisible)}
+      >
         <h1>{film.title}</h1>
         <p>{film.opening_crawl}</p>
       </div>
