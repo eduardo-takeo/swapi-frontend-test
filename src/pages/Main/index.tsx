@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import EmptyPrompt from "../../components/EmptyPrompt";
 import ErrorMessage from "../../components/ErrorMessage";
 import FilmsShowcase from "../../components/FilmsShowcase";
 import Header from "../../components/Header";
@@ -49,7 +50,11 @@ function Main() {
       <main className={styles.mainContainer}>
         <Searchbar filterFilms={filterFilms} />
 
-        <FilmsShowcase filmsList={films} />
+        {films.length > 0 ? (
+          <FilmsShowcase filmsList={films} />
+        ) : (
+          <EmptyPrompt />
+        )}
 
         {isLoading && <LoadingMessage />}
         {error && <ErrorMessage />}
