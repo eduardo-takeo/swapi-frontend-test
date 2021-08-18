@@ -32,6 +32,12 @@ function FilmDropdown({ film }: FilmDropdownProps) {
             <strong>Opening:</strong> {film.opening_crawl}
           </span>
           <span>
+            <strong>Characters:</strong>
+            {film.charactersData.map((character) => (
+              <span> {character.name} / </span>
+            ))}
+          </span>
+          <span>
             <strong>Release Date:</strong> {film.release_date}
           </span>
           <span>
