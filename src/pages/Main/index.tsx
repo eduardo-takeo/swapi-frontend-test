@@ -19,10 +19,22 @@ function Main() {
     setDisplayingFilms(films);
   }, [films]);
 
-  function filterFilms(searchTerm: string) {
+  function filterByTitle(searchTerm: string) {
     const filteredFilms = films.filter((film) =>
       film.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    setDisplayingFilms(filteredFilms);
+  }
+
+  function filterByCharacter(searchTerm: string) {
+    const filteredFilms = films.filter((film) => {
+      const filtered = film.charactersData.filter((character) =>
+        character.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      if (filtered.length > 0) return film;
+    });
 
     setDisplayingFilms(filteredFilms);
   }
@@ -33,12 +45,14 @@ function Main() {
 
       <main className={styles.mainContainer}>
         <Searchbar
-          filterFilms={filterFilms}
+          filterFilms={
+            filterOption === "films" ? filterByTitle : filterByCharacter
+          }
           filterOption={filterOption}
           setFilterOption={setFilterOption}
         />
 
-        {displayingFilms.length > 0 && (
+        {displayingFilms.length > 0 && !isLoading && (
           <FilmsShowcase filmsList={displayingFilms} />
         )}
         {displayingFilms.length < 1 && !isLoading && <EmptyPrompt />}
