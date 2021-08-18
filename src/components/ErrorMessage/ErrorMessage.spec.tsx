@@ -6,7 +6,7 @@ describe("EmptyPrompt component", () => {
     render(<ErrorMessage />);
 
     expect(
-      screen.getByText("Ooops, something went wrong :(")
+      screen.getByText("Ooops, something went wrong :( Please try again later")
     ).toBeInTheDocument();
   });
 });
