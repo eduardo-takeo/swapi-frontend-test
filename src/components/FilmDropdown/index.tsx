@@ -34,7 +34,7 @@ function FilmDropdown({ film }: FilmDropdownProps) {
           <span>
             <strong>Characters:</strong>
             {film.charactersData.map((character) => (
-              <span> {character.name} / </span>
+              <span key={character.name}> {character.name} / </span>
             ))}
           </span>
           <span>
